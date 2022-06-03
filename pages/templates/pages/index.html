@@ -1,0 +1,40 @@
+{% extends 'pages/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<section class="container mt-4">
+    {% if user.is_authenticated %}
+    <a class="btn btn-primary" href="{% url 'account_logout' %}">Logout</a>
+    <p class="mt-2">Welcome {{user.username}}</p>
+
+    <div id="d">
+        {% if messages %}
+        {% for msg in messages %}
+        <div class="alert alert-{{msg.tags}}" role="alert">{{msg}}</div>
+        {% empty %}
+        <p></p>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="mt-5 d-flex justify-content-center">
+
+
+        <form class="form-group w-50" action="" method="post" autocomplete="off">
+
+            {% csrf_token %}
+            {{emp|crispy}}
+            <button class="form-control mt-2 btn btn-primary">Add Employee</button>
+            <a class="btn btn-success form-control mt-2" href="{% url 'display'%}">Display</a>
+        </form>
+    </div>
+
+    {% comment %} <a href="{% url 'account_reset_password' %}">Reset Password</a> {% endcomment %}
+
+    {%else%}
+    <a class="btn btn-primary" href="{% url 'account_login' %}">Login</a>
+    <a class="btn btn-danger" href="{% url 'account_signup' %}">Sign Up</a>
+    {% endif %}
+</section>
+
+{% endblock content %}

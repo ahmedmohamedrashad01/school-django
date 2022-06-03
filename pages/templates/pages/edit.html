@@ -1,0 +1,29 @@
+
+{% extends 'pages/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<section class="container mt-4">
+    <div>
+        <a class="btn btn-primary" href="{% url 'account_logout' %}">Logout</a>
+        <a class="btn btn-primary" href="{% url 'home' %}">Home</a>
+    </div>
+
+
+
+
+    <div class="mt-5 d-flex justify-content-center">
+
+
+        <form class="form-group w-50" action="" method="post" autocomplete="off">
+
+            {% csrf_token %}
+            {{form|crispy}}
+            <button class="form-control mt-2 btn btn-primary">Edit Employee</button>
+            </form>
+    </div>
+
+
+</section>
+
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends 'pages/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<section class="container mt-4">
+    <div>
+        <a class="btn btn-primary" href="{% url 'account_logout' %}">Logout</a>
+        <a class="btn btn-primary" href="{% url 'home' %}">Home</a>
+    </div>
+  <table class="table mt-2 table-hover table-bordered">
+      <thead class=" table-primary">
+          <th>Name</th>
+          <th>Address</th>
+          <th>Age</th>
+          <th>Student Class</th>
+          <th>Edit Std</th>
+          <th>Delete Std</th>
+      </thead>
+      <tbody>
+          {% for d in data %}
+          <tr>
+              <td>{{d.name}}</td>
+              <td>{{d.address}}</td>
+              <td>{{d.age}}</td>
+              <td>{{d.studentclass}}</td>
+              <td><a class="btn btn-success" href="{% url 'edit' d.pk %}">Edit</a></td>
+              <td><a class="btn btn-danger" href="{% url 'delete' d.pk %}">Delete</a></td>
+          </tr>
+
+          {% endfor %}
+      </tbody>
+  </table>
+</section>
+
+{% endblock content %}
